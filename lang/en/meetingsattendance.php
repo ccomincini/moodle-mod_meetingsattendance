@@ -104,3 +104,7 @@ $string['start_datetime_help'] = 'Date and time when the meeting officially star
 $string['end_datetime'] = 'End date and time';
 $string['end_datetime_help'] = 'Date and time when the meeting officially ends. The expected duration will be calculated automatically.';
 $string['endbeforestart'] = 'The end date/time must be after the start date/time.';
+
+
+$string['skip'] = 'Skip';
+$string['choose'] = 'Choose user...';
