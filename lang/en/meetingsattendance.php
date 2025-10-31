@@ -96,3 +96,11 @@ $string['manual_assignment'] = 'Manual User Assignment';
 $string['assign_user'] = 'Assign User';
 $string['participant_email'] = 'Participant Email';
 $string['select_moodle_user'] = 'Select Moodle User';
+
+$string['meeting_schedule'] = 'Meeting Schedule';
+$string['completion_settings'] = 'Completion Settings';
+$string['start_datetime'] = 'Start date and time';
+$string['start_datetime_help'] = 'Date and time when the meeting officially starts (used for attendance validation).';
+$string['end_datetime'] = 'End date and time';
+$string['end_datetime_help'] = 'Date and time when the meeting officially ends. The expected duration will be calculated automatically.';
+$string['endbeforestart'] = 'The end date/time must be after the start date/time.';
