@@ -1,0 +1,68 @@
+# Moodle Plugin .gitignore
+# This file specifies which files and directories should not be tracked by git
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# PHP IDE files
+.phpstorm.meta.php
+.php_cs.cache
+.php-cs-fixer.cache
+
+# Node dependencies (if using npm)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Composer
+vendor/
+composer.lock
+
+# Build artifacts
+dist/
+build/
+*.tar.gz
+*.zip
+
+# Test coverage
+coverage/
+.coverage
+*.lcov
+
+# Local development
+local.php
+.env
+.env.local
+
+# OS files
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+
+# Moodle specific
+/moodle/
+/config.php
+dataroot/
+
+# PHPUnit
+.phpunit.result.cache
+phpunit.xml
+
+# Documentation builds
+docs/_build/
+
+# setup iniziale per creazione dei primi files e della struttura delle diretories
+setup-plugin.sh

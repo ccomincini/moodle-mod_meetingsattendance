@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="mod/meetingsattendance/db" VERSION="2025103000" COMMENT="XMLDB file for Meetings Attendance (Teams and Zoom)">
+    <TABLES>
+        <TABLE NAME="meetingsattendance" COMMENT="Stores meeting session data for Teams and Zoom">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="introformat" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="platform" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Platform type: 'teams' or 'zoom'"/>
+                <FIELD NAME="meeting_url" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Meeting URL or identifier"/>
+                <FIELD NAME="meeting_id" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Platform-specific meeting ID"/>
+                <FIELD NAME="organizer_email" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Meeting organizer email"/>
+                <FIELD NAME="expected_duration" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="3600" SEQUENCE="false" COMMENT="Expected duration in seconds"/>
+                <FIELD NAME="required_attendance" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="75" SEQUENCE="false" COMMENT="Required attendance percentage"/>
+                <FIELD NAME="completionattendance" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Whether attendance is required for completion"/>
+                <FIELD NAME="status" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="open" SEQUENCE="false" COMMENT="Status: 'open' or 'closed'"/>
+                <FIELD NAME="start_datetime" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Start datetime for filtering attendance reports"/>
+                <FIELD NAME="end_datetime" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="End datetime for filtering attendance reports"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+                <INDEX NAME="platform" UNIQUE="false" FIELDS="platform"/>
+            </INDEXES>
+        </TABLE>
+        <TABLE NAME="meetingsattendance_data" COMMENT="Stores attendance data for meeting participants">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="sessionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="FK to meetingsattendance.id"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The user ID of the participant"/>
+                <FIELD NAME="platform_user_id" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Platform-specific user identifier (Teams/Zoom ID or email)"/>
+                <FIELD NAME="attendance_duration" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Duration of attendance in seconds"/>
+                <FIELD NAME="actual_attendance" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Actual percentage of attendance"/>
+                <FIELD NAME="completion_met" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the completion criteria were met (1 for yes, 0 for no)"/>
+                <FIELD NAME="role" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="Attendee" SEQUENCE="false" COMMENT="User's role in the meeting"/>
+                <FIELD NAME="manually_assigned" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the user was manually assigned (1) or automatically assigned (0)"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="sessionid_platform_user_id" TYPE="unique" FIELDS="sessionid, platform_user_id"/>
+                <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="meetingsattendance" REFFIELDS="id"/>
+                <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="userid" UNIQUE="false" FIELDS="userid"/>
+                <INDEX NAME="sessionid" UNIQUE="false" FIELDS="sessionid"/>
+            </INDEXES>
+        </TABLE>
+        <TABLE NAME="meetingsattendance_reports" COMMENT="Stores reports generated for meeting participants">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="data_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="FK to meetingsattendance_data.id"/>
+                <FIELD NAME="report_id" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Platform-specific report identifier"/>
+                <FIELD NAME="join_time" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Timestamp when user joined the meeting"/>
+                <FIELD NAME="leave_time" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Timestamp when user left the meeting"/>
+                <FIELD NAME="attendance_duration" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Duration of attendance in seconds"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="data_id" TYPE="foreign" FIELDS="data_id" REFTABLE="meetingsattendance_data" REFFIELDS="id"/>
+                <KEY NAME="data_id_report_id" TYPE="unique" FIELDS="data_id, report_id"/>
+            </KEYS>
+            <INDEXES>
+                <KEY NAME="data_id" UNIQUE="false" FIELDS="data_id"/>
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+</XMLDB>
