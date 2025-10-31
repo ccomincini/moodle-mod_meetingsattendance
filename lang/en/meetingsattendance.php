@@ -59,6 +59,8 @@ $string['close_register'] = 'Close Register';
 $string['reopen_register'] = 'Reopen Register';
 $string['manage_unassigned'] = 'Manage Unassigned Participants';
 $string['manage_manual_assignments'] = 'Manage Manual Assignments';
+$string['skip'] = 'Skip';
+$string['choose'] = 'Choose user...';
 
 // Reports
 $string['participants'] = 'Participants';
@@ -105,6 +107,12 @@ $string['end_datetime'] = 'End date and time';
 $string['end_datetime_help'] = 'Date and time when the meeting officially ends. The expected duration will be calculated automatically.';
 $string['endbeforestart'] = 'The end date/time must be after the start date/time.';
 
-
-$string['skip'] = 'Skip';
-$string['choose'] = 'Choose user...';
+// View and reporting
+$string['actions'] = 'Actions';
+$string['status'] = 'Status';
+$string['total_participants'] = 'Total Participants';
+$string['assigned'] = 'Assigned';
+$string['unassigned'] = 'Unassigned';
+$string['completion_met'] = 'Completion Met';
+$string['attendance_summary'] = 'Attendance Summary';
+$string['minutes'] = 'minutes';
