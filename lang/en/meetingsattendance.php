@@ -82,3 +82,17 @@ $string['participantdatanotavailable'] = 'Participant data not available';
 $string['attendance_updated'] = 'Attendance records have been updated';
 $string['no_participants'] = 'No participants found for this meeting';
 $string['unassigned_participants'] = 'Unassigned participants from the platform';
+
+// Sync results
+$string['processed'] = 'Participants Processed';
+$string['matched'] = 'Successfully Matched';
+$string['unassigned'] = 'Unassigned (Manual Review Required)';
+$string['attendance_updated'] = 'Attendance data has been synchronized';
+$string['fetch_attendance'] = 'Fetch Attendance from Platform';
+$string['back'] = 'Back to Activity';
+
+// Manual assignment
+$string['manual_assignment'] = 'Manual User Assignment';
+$string['assign_user'] = 'Assign User';
+$string['participant_email'] = 'Participant Email';
+$string['select_moodle_user'] = 'Select Moodle User';
