@@ -116,3 +116,38 @@ $string['unassigned'] = 'Unassigned';
 $string['completion_met'] = 'Completion Met';
 $string['attendance_summary'] = 'Attendance Summary';
 $string['minutes'] = 'minutes';
+
+// Settings
+$string['teams_settings'] = 'Microsoft Teams Configuration';
+$string['teams_settings_help'] = 'Configure Microsoft Teams API integration for attendance tracking.';
+$string['teams_tenant_id'] = 'Azure Tenant ID';
+$string['teams_tenant_id_help'] = 'The Microsoft Azure Tenant ID for your organization. Required for Microsoft Graph API authentication.';
+$string['teams_info'] = 'Teams Setup Information';
+$string['teams_info_text'] = '<strong>To configure Teams integration:</strong><br/>
+1. Create an Azure AD application registration at https://portal.azure.com<br/>
+2. Configure Server-to-Server OAuth with Graph API permissions<br/>
+3. Grant these scopes: meeting:read:meeting:admin, onlineMeetings.ReadWrite.All<br/>
+4. Enter the Tenant ID above<br/>
+5. Use the OIDC plugin credentials for Client ID and Secret';
+
+$string['zoom_settings'] = 'Zoom Configuration';
+$string['zoom_settings_help'] = 'Configure Zoom Server-to-Server OAuth for attendance tracking.';
+$string['zoom_client_id'] = 'Zoom Client ID';
+$string['zoom_client_id_help'] = 'The Client ID from your Zoom Server-to-Server OAuth app at https://marketplace.zoom.us';
+$string['zoom_client_secret'] = 'Zoom Client Secret';
+$string['zoom_client_secret_help'] = 'The Client Secret from your Zoom Server-to-Server OAuth app. This value is securely encrypted in the database.';
+$string['zoom_account_id'] = 'Zoom Account ID';
+$string['zoom_account_id_help'] = 'Your Zoom Account ID. Required for Server-to-Server OAuth token generation.';
+$string['zoom_info'] = 'Zoom Setup Information';
+$string['zoom_info_text'] = '<strong>To configure Zoom integration:</strong><br/>
+1. Log in to https://marketplace.zoom.us as account owner<br/>
+2. Create a new Server-to-Server OAuth app<br/>
+3. Configure these scopes: meeting:read, report:read:user:admin<br/>
+4. Copy the Client ID, Client Secret, and Account ID to the fields above<br/>
+5. Save settings';
+
+$string['general_settings_help'] = 'General settings for the Meetings Attendance plugin.';
+$string['enable_caching'] = 'Enable API response caching';
+$string['enable_caching_help'] = 'Cache attendance reports from platform APIs to reduce API calls and improve performance.';
+$string['cache_duration'] = 'Cache duration (hours)';
+$string['cache_duration_help'] = 'How long to cache API responses before fetching fresh data (default: 24 hours).';
